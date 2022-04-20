@@ -5,6 +5,7 @@ import { RegisterDto } from './dto/create-registr.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 
 import * as mongodb from 'mongodb'
+
 @Injectable()
 export class AuthService {
 
@@ -27,8 +28,25 @@ console.log(checker);
     return checker;
   }
 
-  login(dto: CreateAuthDto) {
-    return dto;
+  async login(email:string,password:string) {
+    return    (await this.db.collection('customer').aggregate([
+      {
+        $match:{
+          email:email,
+          password:password//TODO : hash password
+        }
+      },
+      {
+        $project:{
+          _id:1,
+          email:1,
+          password:1
+        }
+      }
+    ]).toArray())[0]
+  }
+  async validateUser(){
+
   }
 
   async findUser(email: string) {

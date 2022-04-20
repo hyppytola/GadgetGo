@@ -18,8 +18,14 @@ export class AuthController {
   }
 
   @Post('login')
-  login(@Body() dto: CreateAuthDto) {
-    return this.authService.login(dto);
+  async login(@Body() dto: CreateAuthDto) {
+    const password = dto.password;
+    const email = dto.email;
+    const oldUser = await this.authService.findUser(email);
+    if (!oldUser) {
+      throw new BadRequestException("User doesn't exitst");
+    }
+    return this.authService.login(email,password);
   }
 
 
