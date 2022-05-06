@@ -1,39 +1,23 @@
-import React, { createContext } from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import { CssBaseline } from '@material-ui/core';
-import AppRouter from './components/AppRouter';
-import { createMuiTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
-import { orange, teal } from '@material-ui/core/colors';
-import './styles/App.css';
-import UserStore from './store/UserStore';
-import ThemeStore from './store/ThemeStore';
+import React from 'react';
+import {BrowserRouter as Router} from 'react-router-dom'
+import {DataProvider} from './GlobalState'
+import Header from './components/headers/Header'
+import MainPages from './components/mainpages/Pages'
+import FooterPage from './components/mainpages/footer/FooterPage';
 
-let theme = createMuiTheme({
-  palette: {
-    primary: teal,
-    secondary: orange,
-    type: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  }
-});
-theme = responsiveFontSizes(theme);
-export const Context = createContext(null);
 
-const App = () => {
+function App() {
   return (
-    <Context.Provider value={{
-      userStore: new UserStore(),
-      themeStore: new ThemeStore()
-    }}>
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-          <CssBaseline/>
-          <Navbar/>
-          <AppRouter/>
-        </BrowserRouter>
-      </ThemeProvider>
-    </Context.Provider>
+    <DataProvider>
+      <Router>
+        <div className="App">
+          <Header />
+          <MainPages />
+          <FooterPage />
+        </div>
+      </Router>
+    </DataProvider>
   );
-};
+}
 
 export default App;
