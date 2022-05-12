@@ -1,22 +1,26 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, Button } from 'react-native'
+import React, { useContext, useState, } from 'react'
+import { View, Text, StyleSheet, Button, } from 'react-native'
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import axios from 'axios';
+import { backend } from "../../../config/config.json";
+import { AuthContext } from '../../context/AuthContext';
+import Spinner from 'react-native-loading-spinner-overlay/lib';
 
 const SignInScreen = () => {
-    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    
+    
+
 
     const navigation = useNavigation();
+    const {isLoading, login} = useContext(AuthContext);
 
 
-    const onSignInPressed = () => {
-        console.warn("Sign in")
-        
 
-        navigation.navigate('Home')
-    }
     const onForgotPassword = () => {
         console.warn("onForgotPassword")
     }
@@ -24,18 +28,20 @@ const SignInScreen = () => {
         console.warn("OnSignInGoogle")
     }
     const onSignUpPressed = () => {
-        console.warn("onSignUpPressed")
+
 
         navigation.navigate('SignUp')
+
     }
     return (
         <View style={styles.root}>
+            <Spinner visible={isLoading}/>
             <Text style={styles.pageTitle}>Sign in</Text>
 
             <CustomInput
-                placeholder="Username"
-                value={username}
-                setValue={setUsername}
+                placeholder="Email"
+                value={email}
+                setValue={setEmail}
                 secureTextEntry={false} />
             <CustomInput
                 placeholder="Password"
@@ -45,25 +51,27 @@ const SignInScreen = () => {
 
             <CustomButton
                 text={"Sign In"}
-                onPress={onSignInPressed} />
+                onPress={() => {
+                    login(email, password)
+                }} />
 
             <CustomButton
                 text={"Forgot Password?"}
                 onPress={onForgotPassword}
                 type="TERTIARY" />
-
+            {/* 
             <CustomButton
                 text={"Sign In with Google"}
                 onPress={OnSignInGoogle}
                 bgColor="#FAE9EA"
-                fgColor="#DD4D44" />
+                fgColor="#DD4D44" /> */}
 
             <CustomButton
                 text={"Don't have an account? Create one"}
                 onPress={onSignUpPressed}
                 type="TERTIARY" />
 
-            <Text style = {styles.text}>Made by "Go Team"</Text>
+            <Text style={styles.text}>Made by "Go Team"</Text>
 
         </View>
     );
@@ -85,9 +93,12 @@ const styles = StyleSheet.create({
     text: {
         padding: 7,
         color: 'gray'
-    }
+    },
+   
 
 })
+
+
 
 
 export default SignInScreen

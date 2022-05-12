@@ -1,42 +1,61 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { View, Text, StyleSheet, Button, ScrollView } from 'react-native'
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomButton';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
+import { backend } from "../../../config/config.json";
+import { AuthContext } from '../../context/AuthContext';
+import Spinner from 'react-native-loading-spinner-overlay';
+
 
 const SignUpScreen = () => {
     const [userName, setUserName] = useState('')
     const [name, setName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
-    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [passwordRepeat, setPasswordRepeat] = useState('')
     const [address, setAddress] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
+
+    
+    const {isLoading, register} = useContext(AuthContext);
 
     const navigation = useNavigation();
 
     const onSignInPressed = () => {
         console.warn("Sign in")
         navigation.navigate('SignIn')
+        
+
+        // const addressText = (await axios({
+        //     method: 'get',
+        //     url: http://${config.database.elastic.host}:${config.database.elastic.port}/address/address/${apartment._id},
+        //   })).data;
     }
 
     const OnSignInGoogle = () => {
         console.warn("OnSignInGoogle")
     }
-    const onRegisterPressed = () => {
-        console.warn("onRegisterPressed")
-    }
+    
     return (
         <ScrollView>
             <View style={styles.root}>
+                <Spinner visible={isLoading} />
                 <Text style={styles.pageTitle}>Sign up</Text>
 
-                <CustomInput
+                
+
+                {/* <CustomInput
                     placeholder="Username*"
                     value={userName}
                     setValue={setUserName}
+                    secureTextEntry={false} /> */}
+                     <CustomInput
+                    placeholder="Name*"
+                    value={name}
+                    setValue={setName}
                     secureTextEntry={false} />
 
                <CustomInput
@@ -45,17 +64,13 @@ const SignUpScreen = () => {
                     setValue={setPassword}
                     secureTextEntry={true} />
 
-                <CustomInput
-                    placeholder="Name*"
-                    value={name}
-                    setValue={setName}
-                    secureTextEntry={false} />
+                
 
-                <CustomInput
+                {/* <CustomInput
                     placeholder="Last Name*"
                     value={lastName}
                     setValue={setLastName}
-                    secureTextEntry={false} />
+                    secureTextEntry={false} /> */}
 
                 <CustomInput
                     placeholder="Email*"
@@ -64,28 +79,30 @@ const SignUpScreen = () => {
                     secureTextEntry={false} />
                
 
-                <CustomInput
+                {/* <CustomInput
                     placeholder="Adress*"
                     value={address}
                     setValue={setAddress}
-                    secureTextEntry={false} />
-
+                    secureTextEntry={false} /> */}
+{/* 
                 <CustomInput
                     placeholder="Phone number*"
                     value={phoneNumber}
                     setValue={setPhoneNumber}
-                    secureTextEntry={false} />
+                    secureTextEntry={false} /> */}
 
                 <CustomButton
                     text={"Register"}
-                    onPress={onRegisterPressed} />
+                    onPress={() => {
+                        register(name, email, password)
+                    }} />
 
 
-                <CustomButton
+                {/* <CustomButton
                     text={"Sign In with Google"}
                     onPress={OnSignInGoogle}
                     bgColor="#FAE9EA"
-                    fgColor="#DD4D44" />
+                    fgColor="#DD4D44" /> */}
 
                 <CustomButton
                     text={"Already have an account? Sign In"}

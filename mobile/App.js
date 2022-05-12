@@ -10,6 +10,7 @@ import React from 'react';
 
 import {
   SafeAreaView,
+  StatusBar,
   StyleSheet,
   Text,
   useColorScheme,
@@ -19,15 +20,23 @@ import {
 import SignInScreen from './src/screens/SiginInScreen';
 import SignUpScreen from './src/screens/SignUpScreen/SignUpScreen';
 import Navigation from './src/navigation';
+import { AuthProvider } from './src/context/AuthContext';
+import { DataProvider } from './src/GlobalState';
+
 
 
 
 const App = () => {
-  
+
 
   return (
     <SafeAreaView style={styles.root}>
-     <Navigation/>
+      <AuthProvider>
+        <DataProvider>
+        <StatusBar backgroundColor="#06bcee" />
+        <Navigation />
+        </DataProvider>
+      </AuthProvider>
     </SafeAreaView>
   );
 };
