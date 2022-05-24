@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import {
 	faFacebookF,
@@ -8,6 +8,7 @@ import {
 	faPinterestP
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { HashLink as Link } from 'react-router-hash-link';
 
 // Font Awesome icons
 const facebookIcon = <FontAwesomeIcon icon={faFacebookF} />;
@@ -26,16 +27,16 @@ function FooterPage() {
 						<ul>
 							<li className="heading">Connect</li>
 							<li>
-								<a href="/">{facebookIcon} Facebook</a>
+								<a href="https://www.facebook.com">{facebookIcon} Facebook</a>
 							</li>
 							<li>
-								<a href="/">{instagramIcon} Instagram</a>
+								<a href="https://www.instagram.com">{instagramIcon} Instagram</a>
 							</li>
 							<li>
-								<a href="/">{twitterIcon} Twitter</a>
+								<a href="https://twitter.com">{twitterIcon} Twitter</a>
 							</li>
 							<li>
-								<a href="/">{pinterestIcon} Pinterest</a>
+								<a href="https://www.pinterest.com">{pinterestIcon} Pinterest</a>
 							</li>
 						</ul>
 					</div>
@@ -44,10 +45,10 @@ function FooterPage() {
 							<li className="heading">Visit</li>
 							<li>
 								<div className="address">
-									<p>Pacific Place</p>
-									<p>600 Pine Street</p>
-									<p>Seattle, WA 98101</p>
-									<p>United States</p>
+									<p>Gadget Go</p>
+									<p>Kabanbay Batyr Street</p>
+									<p>Nur-Sultan, NS 050001</p>
+									<p>Kazakhstan</p>
 								</div>
 							</li>
 						</ul>
@@ -60,11 +61,7 @@ function FooterPage() {
 									About
 								</Link>
 							</li>
-							<li>
-								<Link exact to="/contact">
-									Contact Us
-								</Link>
-							</li>
+							
 						</ul>
 					</div>
 				</div>

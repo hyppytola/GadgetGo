@@ -61,7 +61,7 @@
   color: #222222;
   cursor: pointer;
   display: inline-block;
-  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+  font-family: 'Roboto';
   font-size: 16px;
   font-weight: 600;
   margin: 0;
@@ -77,7 +77,7 @@
     box-sizing: border-box;
     color: #FFFFFF;
     cursor: pointer;
-    font-family: Inter,Helvetica,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Noto Color Emoji","Segoe UI Symbol","Android Emoji",EmojiSymbols,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif;
+    font-family: 'Roboto';
     font-size: 16px;
     font-weight: 600;
     margin: 0;
