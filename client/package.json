@@ -47,5 +47,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://gadget-go-online-store.herokuapp.com"
+  "proxy": "https://gadget-go-online-store.herokuapp.com/api"
 }
